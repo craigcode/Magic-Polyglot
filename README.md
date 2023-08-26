@@ -1,1 +1,1 @@
-"# Magic-Polyglot" 
+# Magic-Polyglot
