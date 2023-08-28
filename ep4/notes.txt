@@ -1,0 +1,40 @@
+Notes to Magic Polyglot Episode 4
+---------------------------------
+
+cd c:\dev\magic-polyglot
+md ep4
+cd ep4
+
+python -m venv env
+
+code .
+
+change vs code terminal default profile
+
+env\scripts\activate.bat
+
+see https://typer.tiangolo.com/ for typer
+pip install typer[all]
+
+see https://pypi.org/project/python-dotenv/
+pip install python-dotenv
+review .env file
+
+see https://www.twilio.com/
+pip install twilio
+
+see https://aws.amazon.com/ses/
+https://aws.amazon.com/sdk-for-python/
+pip install boto3
+
+https://sendgrid.com/
+pip install sendgrid
+
+review requirements.txt
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+https://pypi.org/project/auto-py-to-exe/
+pip install auto-py-to-exe
+
+build msgutils.exe using auto-py-to-exe

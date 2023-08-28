@@ -1,0 +1,6 @@
+typer[all]
+python-dotenv
+twilio
+sendgrid
+boto3
+auto-py-to-exe
