@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic-HTMX Demos :: Active Search Demo</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  </head>
+  <body>
+
+    <h1>Magic - HTMX Demos</h1>
+    <h2>5. Active Search Demo</h2>
+
+  <h3> 
+    Search Clone Troopers 
+    <span class="htmx-indicator"> 
+      <img src="/images/bars.svg"/> Searching... 
+     </span> 
+  </h3>
+  <input class="form-control" type="search" size="50"
+         name="search" placeholder="Begin Typing To Search Clones..." 
+         hx-post="/magicscripts/mgrqispi.dll?appname=mgHTMX&prgname=Search" 
+         hx-trigger="keyup changed delay:500ms, search" 
+         hx-target="#search-results" 
+         hx-indicator=".htmx-indicator">
+  <br>&nbsp;<br>
+  <table class="table" width="100%">
+      <thead>
+      <tr>
+        <td><b>ID</b></td>
+        <td><b>Clone Trooper Name</b></td>
+        <td><b>Kill Code</b></td>
+      </tr>
+      </thead>
+      <tbody id="search-results">
+      </tbody>
+  </table>
+  
+</body>
+</html>

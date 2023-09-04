@@ -1,0 +1,54 @@
+<!$MGIF_fullpage>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic-HTMX Demos :: Infinite Scroll Demo</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  </head>
+  <body>
+
+    <h1>Magic - HTMX Demos</h1>
+    <h2>5. Infinite Scroll Demo</h2>
+
+    <table width="100%">
+    <tr>
+        <td><b>ID</b></td>
+        <td><b>Name</b></td>
+        <td><b>Email</b></td>
+        <td><b>Kill Code</b></td>
+    </tr>
+    <!$MGREPEAT>
+    <!$MGIF_blocklast1>
+    <tr hx-get="http://127.0.0.1/magicscripts/mgrqispi.dll?appname=mgHTMX&prgname=InfiniteScrollDemo&page=<!$MG_pagenum1>"
+        hx-trigger="revealed"
+        hx-swap="afterend"><!$MGELSE>
+    <tr><!$MGENDIF>
+        <td><!$MG_id1></td>
+        <td>Agent Smith</td>
+        <td><!$MG_email1></td>
+        <td><!$MG_killcode1></td>
+    </tr>
+    <!$MGENDREPEAT>  
+    </tr>     
+    </table>
+
+</body>
+</html>
+<!$MGENDIF>
+<!$MGIF_pagefragment>
+<!$MGREPEAT>
+<!$MGIF_blocklast>
+    <tr hx-get="http://127.0.0.1/magicscripts/mgrqispi.dll?appname=mgHTMX&prgname=InfiniteScrollDemo&page=<!$MG_pagenum>"
+        hx-trigger="revealed"
+        hx-swap="afterend"><!$MGELSE>
+    <tr><!$MGENDIF>
+    <td><!$MG_id></td>
+    <td>Agent Smith</td>
+    <td><!$MG_email></td>
+    <td><!$MG_killcode></td>
+</tr>
+<!$MGENDREPEAT>    
+<!$MGENDIF>
+

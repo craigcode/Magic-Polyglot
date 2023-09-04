@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic-HTMX Demos :: Delete Row Demo</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+    <style>
+        tr.htmx-swapping td {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+            }
+    </style>
+  </head>
+  <body>
+
+    <h1>Magic - HTMX Demos</h1>
+    <h2>4. Delete Row Demo</h2>
+
+    <table width="100%">
+    <tbody hx-confirm="Are you sure?" hx-target="closest tr" hx-swap="outerHTML swap:1s">
+        <tr>
+            <td><b>ID</b></td>
+            <td><b>Clone Trooper Name</b></td>
+            <td><b>Kill Code</b></td>
+            <td>&nbsp;</td>
+        </tr>
+    <!$MGREPEAT>
+    <tr>
+        <td><!$MG_id></td>
+        <td><!$MG_name></td>
+        <td><!$MG_killcode></td>
+        <td><button class="btn btn-danger" hx-get="/magicscripts/mgrqispi.dll?appname=mgHTMX&prgname=DeleteRowDemo&delete=<!$MG_id>">
+            Delete
+          </button></td>
+    </tr>
+    <!$MGENDREPEAT>    
+    </tbody>
+    </table>
+
+</body>
+</html>
+

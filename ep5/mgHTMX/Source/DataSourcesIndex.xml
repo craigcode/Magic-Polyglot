@@ -1,0 +1,24 @@
+ <Application>
+ 
+<Header>
+
+  <Version val="14090.00"/>
+
+  <WithIsn val="Y"/>
+
+  <Exe comp="-1"/>
+
+  <LastIsn val="2"/>
+
+  <LastIsnFolder val="1"/>
+
+</Header>
+
+<DataRepositoryProperties/>
+ <DataSourceRepository>
+  <DataObjects>
+ 
+<DataObject PhysicalName="Click_To_Edit_Table" Resident="N" UniqueISNConvState="12" data_source="Memory" id="1" name="Click To Edit Table" offset="228" length="2994"/> 
+<DataObject PhysicalName="CloneTroopers" Resident="N" UniqueISNConvState="12" data_source="Memory" id="2" name="CloneTroopers" offset="3223" length="2498"/>  </DataObjects>
+ </DataSourceRepository>
+ <LastModified val="31055614-75596210"/>  </Application>

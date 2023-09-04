@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic-HTMX Demos :: Button Click Demo</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+    <script>
+      htmx.on("htmx:responseError", function () {
+                 console.error("omfg");
+             })
+      htmx.on("htmx:timeout", function () {
+        alert("timeout!");
+      })
+      htmx.logger = function(elt, event, data) {
+
+        if(
+          data.serverResponse != undefined) {
+            console.log(elt,event,data);
+          }
+        if(
+          data.serverResponse != undefined &&
+          data.serverResponse.indexOf("<HTML><HEAD><TITLE>Execution Error")!== -1){
+          console.log("magic bsod error");
+          //data.isError = true;
+          data.shouldSwap = false;
+          
+        }
+      }
+
+    </script>
+  </head>
+  <body>
+
+    <h1>Magic - HTMX Demos</h1>
+    <h2>1. Button Click Demo</h2>
+    <!-- have a button GET a response via AJAX -->
+    <button 
+            hx-get="/magicscripts/mgrqispi.dll?appname=mgHTMX&prgname=Clicked"  
+            xhx-on::before-request="alert('Making a request!')"
+            hx-on::after-request="alert('Done making a request!')"
+            hx-on::before-swap="alert('Before swap!')"
+            hx-swap="outerHTML">
+    Click Me
+    </button>     
+
+</body>
+</html>
+

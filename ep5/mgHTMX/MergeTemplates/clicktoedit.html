@@ -1,0 +1,63 @@
+<!$MGIF_editform>
+<form hx-post="/magicscripts/mgrqispi.dll" hx-target="this" hx-swap="outerHTML">
+    <div>
+      <label>First Name</label>
+      <input type="text" name="firstName" value="<!$MG_firstname>">
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" name="lastName" value="<!$MG_lastname>">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" name="email" value="<!$MG_email>">
+    </div>
+    <input type="hidden" name="appname" value="mgHTMX">
+    <input type="hidden" name="prgname" value="Click2EditDemo">
+    <input type="hidden" name="editmode" value="U">
+    <button class="btn">Submit</button>
+    <button class="btn" hx-get="/magicscripts/mgrqispi.dll?appname=mgHTMX&prgname=Click2EditDemo&editmode=C">Cancel</button>
+</form>
+<!$MGENDIF>
+<!$MGIF_readonly>
+<div hx-target="this" hx-swap="outerHTML">
+    <div><label>First Name</label>: <!$MG_firstname></div>
+    <div><label>Last Name</label>: <!$MG_lastname></div>
+    <div><label>Email</label>: <!$MG_email></div>
+    <button 
+        hx-get="/magicscripts/mgrqispi.dll?appname=mgHTMX&prgname=Click2EditDemo&editmode=E"
+        class="btn btn-primary">
+    Click To Edit
+    </button>
+    <!$MGIF_updated><div><label>&nbsp;</label></div>
+    <div><label>Record Updated!</label></div><!$MGENDIF>
+</div>
+<!$MGENDIF>
+<!$MGIF_fullpage>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic-HTMX Demos :: Click to Edit Demo</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  </head>
+  <body>
+
+    <h1>Magic - HTMX Demos</h1>
+    <h2>2. Click to Edit Demo</h2>
+
+<div hx-target="this" hx-swap="outerHTML">
+    <div><label>First Name</label>: <!$MG_firstname></div>
+    <div><label>Last Name</label>: <!$MG_lastname></div>
+    <div><label>Email</label>: <!$MG_email></div>
+    <button 
+        hx-get="/magicscripts/mgrqispi.dll?appname=mgHTMX&prgname=Click2EditDemo&editmode=E"
+        class="btn btn-primary">
+    Click To Edit
+    </button>
+</div>
+</body>
+</html>
+<!$MGENDIF>
+

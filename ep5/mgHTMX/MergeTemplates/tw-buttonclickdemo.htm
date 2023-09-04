@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--meta name="viewport" content="width=device-width, initial-scale=1.0" /-->
+    <title>Magic-HTMX Demos :: Button Click Demo</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  </head>
+  <body>
+
+    <div class="bg-white shadow sm:rounded-lg w-1/2 grid place-items-center">
+        <div class="px-4 py-5 sm:p-6">
+          <h3 class="text-base font-semibold leading-6 text-gray-900">1. Button Click Demo</h3>
+          <div class="mt-2 max-w-xl text-sm text-gray-500">
+            <p>Hello</p>
+          </div>
+          <div class="mt-5">
+            <button type="button" 
+                class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                hx-get="/magicscripts/mgrqispi.dll?appname=mgHTMX&prgname=ClickedTW" 
+                hx-swap="outerHTML">
+                Click Me!</button>
+          </div>
+        </div>
+      </div>
+      
+      
+</body>
+</html>
+
