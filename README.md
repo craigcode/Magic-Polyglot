@@ -21,4 +21,6 @@ Current Episodes on Youtube:
 
 <a href="https://www.youtube.com/watch?v=GgtgK-sT1ck" target="_blank">Episode 4 - Python Command-Line Apps</a>
 
+<a href="https://www.youtube.com/watch?v=r6hYAgobTSY" target="_blank">Episode 5 - Magic & HTMX</a>
+
 (Source code for each episode is in corresponding folder).
