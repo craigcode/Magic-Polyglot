@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Application>
+
+  <_Project>
+    <ProjectName val="mgAUTH"/>
+    <VCProjectID val="0"/>
+    <VCActive val="N"/>
+    <WorkOffline val="N"/>
+    <VCUseGitPlugin val="N"/>
+    <SourceDirectory val="Source"/>
+    <ExportsDirectory val="Exports"/>
+    <GUID val="{8E7BACC4-51EA-41C1-9B97-71B08883B764}"/>
+    <Version min="13020.10"/>
+    <SourceVersion val="14090.00"/>
+  </_Project>
+
+</Application>

@@ -1,0 +1,45 @@
+github:
+
+    https://github.com/craigcode/magic-polyglot
+    ep6
+
+
+create python environment:
+
+    python -m venv env
+    env\scripts\activate.bat
+
+
+fastapi:
+
+    pip install fastapi uvicorn pyjwt[crypto]
+    python.exe -m pip install --upgrade pip
+    
+    populate .config from auth0 profile
+
+    (main.py)
+    uvicorn main:app --reload
+
+    http://127.0.0.1:8000/docs
+    http://127.0.0.1:8000/api/public
+    http://127.0.0.1:8000/api/private
+
+
+flask:
+
+    pip install -r requirements.txt
+
+    populate .env from auth0 profile
+
+    generate guid at command prompt: powershell [guid]::NewGuid()
+    and use to populate APP_SECRET_KEY
+
+    py server.py
+    http://127.0.0.1:3000
+    
+mgAUTH:
+
+    Magic xpa 4.9 app in ep6\mgAUTH
+    Single program, public name "Hello"
+
+    http://127.0.0.1/magicscripts/mgrqispi.dll?appname=mgauth&prgname=Hello

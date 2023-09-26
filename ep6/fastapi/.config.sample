@@ -1,0 +1,9 @@
+# .config
+ 
+[AUTH0]
+DOMAIN = <you_auth0_domain>
+API_AUDIENCE = <your_auth0_audience_id>
+ALGORITHMS = RS256
+ISSUER = <your_auth0_issuer>
+CLIENT_ID = <your_client_id>
+CLIENT_SECRET = <your_client_secret>

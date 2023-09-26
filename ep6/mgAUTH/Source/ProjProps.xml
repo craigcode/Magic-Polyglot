@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Application>
+
+  <Header>
+    <Version val="14090.00"/>
+    <WithIsn val="Y"/>
+    <LastIsn val="0"/>
+  </Header>
+
+  <ProjectProperties>
+    <ProjectData>
+      <GUID val="{8E7BACC4-51EA-41C1-9B97-71B08883B764}"/>
+      <RemoteFlowMonitorRight comp="-1"/>
+      <NulArithmetic val="N"/>
+      <WindowSortBy val="R"/>
+      <_SystemPulldownMenu comp="-1" obj="1"/>
+      <_SystemContextMenu comp="-1"/>
+      <ExposeComment val="N"/>
+      <ProjectName val="mgAUTH"/>
+    </ProjectData>
+  </ProjectProperties>
+
+</Application>

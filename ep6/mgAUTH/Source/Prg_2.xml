@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Application>
+
+  <Header>
+    <Version val="14090.00"/>
+    <WithIsn val="Y"/>
+    <_InternalTask val="N"/>
+    <IsRoot val="N"/>
+    <InIndex val="N"/>
+    <UniqueISNConvState val="12"/>
+  </Header>
+
+  <ProgramsRepository>
+    <Programs>
+      <Task MainProgram="N">
+        <Header Description="Hello, JSON" ISN_2="1" LastIsn="1" id="2">
+          <LastModified _date="738788" _time="53805" date="25/09/2023" time="14:56:45"/>
+          <Public val="Hello"/>
+          <ExecutionRight comp="-1"/>
+          <Resident val="N"/>
+          <SQL val="N"/>
+          <ReturnValue>
+            <ReturnValueAttr/>
+            <ParametersAttributes/>
+          </ReturnValue>
+          <SqlWhereExist val="N"/>
+          <TaskType val="B"/>
+          <External val="Y"/>
+          <Offline val="N"/>
+          <FormType val="N"/>
+          <DotNetObjectExists val="N"/>
+        </Header>
+        <ItemIsn val="1"/>
+        <Resource>
+          <IO id="1">
+            <Description val="Internet"/>
+            <OpenPrintDialog val="N"/>
+            <PaperSize val="68"/>
+            <Format val="L"/>
+            <Media val="R"/>
+            <Access val="W"/>
+            <Orientation val="P"/>
+            <PrintPreview val="N"/>
+            <PDF val="N"/>
+            <PrintingAllowed val="Y"/>
+            <ContentCopyingAllowed val="Y"/>
+            <ChangesAllowed val="Y"/>
+            <PageLayoutAllowed val="Y"/>
+            <Vis2LogTranslation val="N"/>
+            <FlipLines val="N"/>
+          </IO>
+          <Columns>
+            <Column id="1" name="Path">
+              <PropertyList model="FIELD">
+                <Model attr_obj="FIELD_ALPHA" id="1"/>
+                <Picture id="157" valUnicode="500"/>
+                <StoredAs id="173" val="1"/>
+                <Size id="174" val="500"/>
+                <_Flip id="194"/>
+              </PropertyList>
+            </Column>
+          </Columns>
+        </Resource>
+        <Information>
+          <Key>
+            <Mode val="N"/>
+          </Key>
+          <DB comp="-1"/>
+          <Sort>
+            <CLS val="A"/>
+          </Sort>
+          <ForceRecordDelete DEL="N"/>
+          <EndTaskCondition val="Y"/>
+          <EvaluateEndCondition val="A"/>
+          <InitialMode val="M"/>
+          <Locate Direction="A"/>
+          <Range Direction="A"/>
+          <VarRange/>
+          <TaskProperties>
+            <SelectionTable val="N"/>
+            <ConfirmUpdate CNFU="N"/>
+            <ConfirmCancel val="N"/>
+            <ErrorStrategy val="A"/>
+            <LockingStrategy val="M"/>
+            <CacheStrategy val="T"/>
+            <ForceRecordSuffix val="N"/>
+            <TransactionMode val="P"/>
+            <TransactionBegin val="N"/>
+            <PreloadView val="N"/>
+            <AllowEmptyDataview val="N"/>
+            <KeepCreatedContext val="N"/>
+          </TaskProperties>
+          <SIDE_WIN>
+            <AllowOptions val="N"/>
+            <AllowQuery val="Y"/>
+            <AllowModify val="Y"/>
+            <AllowCreate val="Y"/>
+            <AllowDelete val="Y"/>
+            <AllowLocate val="Y"/>
+            <AllowRange val="Y"/>
+            <AllowIndexChange val="Y"/>
+            <AllowSorting val="Y"/>
+            <AllowIOFiles val="Y"/>
+            <RecordCycle val="Y"/>
+            <AllowEvents val="Y"/>
+            <AllowIndexOptimization val="Y"/>
+            <AllowLocationInQuery val="Y"/>
+            <AllowPrintingData val="N"/>
+          </SIDE_WIN>
+          <WIN>
+            <OpenTaskWindow val="N"/>
+            <CloseTaskWindow val="Y"/>
+            <ForegroundWindow val="Y"/>
+            <FlipFld val="N"/>
+            <RefreshTaskWindow ReturnValue="N"/>
+          </WIN>
+          <BOX>
+            <Direction val="V"/>
+          </BOX>
+        </Information>
+        <TaskLogic>
+          <LogicUnit id="2" propagate="78">
+            <Level val="R"/>
+            <Type val="M"/>
+            <Scope val="S"/>
+            <EngineDirective val="S"/>
+            <ShowMessage val="Y"/>
+            <Condition val="89"/>
+            <Event>
+              <EventType val="S"/>
+            </Event>
+            <LogicLines>
+              <LogicLine>
+                <DATAVIEW_SRC FlowIsn="2" Type="M">
+                  <Condition val="N"/>
+                  <Modifier val="B"/>
+                  <Direction val="C"/>
+                </DATAVIEW_SRC>
+              </LogicLine>
+              <LogicLine>
+                <Select FieldID="1" FlowIsn="3" id="1">
+                  <Column val="1"/>
+                  <Type val="V"/>
+                  <ExposedToRoute val="N"/>
+                  <IsParameter val="N"/>
+                  <DIFF_UPDATE val="T"/>
+                  <Condition val="Y"/>
+                  <Modifier val="S"/>
+                  <Direction val="C"/>
+                </Select>
+              </LogicLine>
+            </LogicLines>
+          </LogicUnit>
+          <LogicUnit id="3" propagate="78">
+            <Level val="R"/>
+            <Type val="S"/>
+            <Scope val="S"/>
+            <EngineDirective val="S"/>
+            <ShowMessage val="Y"/>
+            <Condition val="89"/>
+            <Event>
+              <EventType val="S"/>
+            </Event>
+            <LogicLines>
+              <LogicLine>
+                <Update FlowIsn="4">
+                  <FieldID val="1"/>
+                  <WithValue val="1"/>
+                  <Incremental val="N"/>
+                  <ForcedUpdate val="Y"/>
+                  <Condition val="Y"/>
+                  <Modifier val="B"/>
+                  <Direction val="C"/>
+                </Update>
+              </LogicLine>
+              <LogicLine>
+                <Evaluate FlowIsn="5">
+                  <Expression val="2"/>
+                  <Condition val="Y"/>
+                  <Modifier val="B"/>
+                  <Direction val="C"/>
+                </Evaluate>
+              </LogicLine>
+              <LogicLine>
+                <FormIO FlowIsn="6">
+                  <OperationType val="O"/>
+                  <Page val="A"/>
+                  <IODeviceInfo>
+                    <IoDeviceIndex val="1"/>
+                  </IODeviceInfo>
+                  <FormEntryInfo>
+                    <FormEntryIndex val="2"/>
+                  </FormEntryInfo>
+                  <Condition val="Y"/>
+                  <Modifier val="B"/>
+                  <Direction val="C"/>
+                </FormIO>
+              </LogicLine>
+            </LogicLines>
+          </LogicUnit>
+        </TaskLogic>
+        <TaskForms>
+          <FormEntry id="1">
+            <PropertyList model="FORM_GUI0">
+              <_Comment id="218"/>
+              <FormName id="311" valUnicode="Hello, JSON"/>
+            </PropertyList>
+          </FormEntry>
+        </TaskForms>
+        <TaskForms>
+          <FormEntry CLSS="1" _last_isn="1" _last_test_id="1" id="2">
+            <PropertyList model="FORM_TEXT">
+              <Width id="23" val="200"/>
+              <Height id="24" val="3"/>
+              <_Comment id="218"/>
+              <FormName id="311" valUnicode="Response"/>
+            </PropertyList>
+            <Control _test_id="1" id="1">
+              <PropertyList model="CTRL_TEXT_EDIT">
+                <Width id="23" val="200"/>
+                <Height id="24" val="1"/>
+                <Data Exp="3" id="43"/>
+                <Format id="82" valUnicode="200"/>
+                <Attribute id="83" val="85"/>
+                <_Orientation id="143"/>
+              </PropertyList>
+            </Control>
+          </FormEntry>
+        </TaskForms>
+        <Expressions>
+          <Expression id="1">
+            <ExpSyntax val="GetParam('path')"/>
+            <ExpAttribute val="*"/>
+          </Expression>
+          <Expression id="2">
+            <ExpSyntax val="RqHTTPHeader('Content-type: application/json')"/>
+            <ExpAttribute val="B"/>
+          </Expression>
+          <Expression id="3">
+            <ExpSyntax val="'{ &quot;msg&quot;: &quot;Hello, World!&quot;, &quot;info&quot;: &quot;This is Magic xpa 4.9&quot;, &quot;timestamp&quot;:  &quot;'&amp;DStr(Date(),'YYYY-MM-DD')&amp;' '&amp;TStr(Time(),'HH:MM:SS')&amp;'&quot;, &quot;path&quot;: &quot;'&amp;Trim({0,1})&amp;'&quot; }'"/>
+            <ExpAttribute val="A"/>
+          </Expression>
+        </Expressions>
+      </Task>
+    </Programs>
+  </ProgramsRepository>
+
+</Application>
