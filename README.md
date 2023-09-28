@@ -23,4 +23,6 @@ Current Episodes on Youtube:
 
 <a href="https://www.youtube.com/watch?v=r6hYAgobTSY" target="_blank">Episode 5 - Magic & HTMX</a>
 
+<a href="https://www.youtube.com/watch?v=oTr6sEK_doY" target="_blank">Episode 6 - Authentication with Auth0 and JWT</a>
+
 (Source code for each episode is in corresponding folder).
