@@ -1,0 +1,112 @@
+{"User":[
+  {
+    "id": 1,
+    "first-name": "Neil",
+    "last-name": "Sims",
+    "avatar": "neil-sims.png",
+    "email": "neil.sims@haggis.io",
+    "biography": "I love working with Magic, HTMX and Tailwind to create great web applications. In my spare time, I enjoy cycling, playing guitar, and bingeing TV shows.",
+    "position": "Front-end developer",
+    "country": "United States",
+    "status": "Active"
+  },
+  {
+    "id": 2,
+    "first-name": "Roberta",
+    "last-name": "Casas",
+    "avatar": "roberta-casas.png",
+    "email": "roberta.casas@haggis.io",
+    "biography": "I love working with Magic, HTMX and Tailwind to create great web applications. In my spare time, I enjoy cycling, playing guitar, and bingeing TV shows.",
+    "position": "Designer",
+    "country": "Spain",
+    "status": "Active"
+  },
+  {
+    "id": 3,
+    "first-name": "Michael",
+    "last-name": "Gough",
+    "avatar": "michael-gough.png",
+    "email": "michael.gough@haggis.io",
+    "biography": "I love working with Magic, HTMX and Tailwind to create great web applications. In my spare time, I enjoy cycling, playing guitar, and bingeing TV shows.",
+    "position": "React developer",
+    "country": "United Kingdom",
+    "status": "Active"
+  },
+  {
+    "id": 4,
+    "first-name": "Jese",
+    "last-name": "Leos",
+    "avatar": "jese-leos.png",
+    "email": "jese.leos@haggis.io",
+    "biography": "I love working with Magic, HTMX and Tailwind to create great web applications. In my spare time, I enjoy cycling, playing guitar, and bingeing TV shows.",
+    "position": "Marketing",
+    "country": "United States",
+    "status": "Active"
+  },
+  {
+    "id": 5,
+    "first-name": "Bonnie",
+    "last-name": "Green",
+    "avatar": "bonnie-green.png",
+    "email": "bonnie.green@haggis.io",
+    "biography": "I love working with Magic, HTMX and Tailwind to create great web applications. In my spare time, I enjoy cycling, playing guitar, and bingeing TV shows.",
+    "position": "UI/UX Engineer",
+    "country": "Australia",
+    "status": "Offline"
+  },
+  {
+    "id": 6,
+    "first-name": "Thomas",
+    "last-name": "Lean",
+    "avatar": "thomas-lean.png",
+    "email": "thomas.lean@haggis.io",
+    "biography": "I love working with Magic, HTMX and Tailwind to create great web applications. In my spare time, I enjoy cycling, playing guitar, and bingeing TV shows.",
+    "position": "Magic developer",
+    "country": "Germany",
+    "status": "Active"
+  },
+  {
+    "id": 7,
+    "first-name": "Helene",
+    "last-name": "Engels",
+    "avatar": "helene-engels.png",
+    "email": "helene.engels@haggis.io",
+    "biography": "I love working with Magic, HTMX and Tailwind to create great web applications. In my spare time, I enjoy cycling, playing guitar, and bingeing TV shows.",
+    "position": "Product owner",
+    "country": "Canada",
+    "status": "Active"
+  },
+  {
+    "id": 8,
+    "first-name": "Lana",
+    "last-name": "Byrd",
+    "avatar": "lana-byrd.png",
+    "email": "lana.byrd@haggis.io",
+    "biography": "I love working with Magic, HTMX and Tailwind to create great web applications. In my spare time, I enjoy cycling, playing guitar, and bingeing TV shows.",
+    "position": "Designer",
+    "country": "United States",
+    "status": "Active"
+  },
+  {
+    "id": 9,
+    "first-name": "Leslie",
+    "last-name": "Livingston",
+    "avatar": "leslie-livingston.png",
+    "email": "leslie.livingston@haggis.io",
+    "biography": "I love working with Magic, HTMX and Tailwind to create great web applications. In my spare time, I enjoy cycling, playing guitar, and bingeing TV shows.",
+    "position": "Web developer",
+    "country": "France",
+    "status": "Offline"
+  },
+  {
+    "id": 10,
+    "first-name": "Robert",
+    "last-name": "Brown",
+    "avatar": "robert-brown.png",
+    "email": "robert.brown@haggis.io",
+    "biography": "I love working with Magic, HTMX and Tailwind to create great web applications. In my spare time, I enjoy cycling, playing guitar, and bingeing TV shows.",
+    "position": "Magic developer",
+    "country": "Russia",
+    "status": "Active"
+  }
+]}

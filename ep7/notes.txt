@@ -1,0 +1,17 @@
+The MATH stack is:
+
+Magic       https://www.magicsoftware.com/app-development-platform/xpa/
+
+Python      https://www.python.org/ 
+            
+            FastAPI     https://fastapi.tiangolo.com/
+
+Alpine      https://alpinejs.dev/
+
+Tailwind    https://tailwindcss.com/
+            https://tailwindui.com/
+
+            Flowbite    https://flowbite.com/
+                        https://github.com/themesberg/flowbite-admin-dashboard
+
+HTMX        https://htmx.org/

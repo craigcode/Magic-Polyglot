@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Application>
+
+  <Header>
+    <Version val="14090.00"/>
+    <WithIsn val="Y"/>
+    <LastIsn val="1"/>
+  </Header>
+
+  <MenusRepository>
+    <Menus>
+      <Menu>
+        <MenuType val="4"/>
+        <ToolNumber val="1"/>
+        <Name val="Default Pulldown menu"/>
+        <LastIsn val="5"/>
+        <MenuEntry id="1">
+          <MenuType val="1"/>
+          <Description_U val="&amp;File"/>
+          <Right comp="-1"/>
+          <Help comp="-1"/>
+          <Prompt comp="-1"/>
+          <Menu>
+            <MenuType val="1"/>
+            <LastIsn val="7"/>
+            <MenuEntry id="1">
+              <MenuType val="3"/>
+              <Flags val="1088"/>
+              <Description_U val="&amp;Open Application"/>
+              <Right comp="-1"/>
+              <Help comp="-1"/>
+              <Prompt comp="-1"/>
+              <Event>
+                <EventType val="I"/>
+                <InternalEventID val="23"/>
+              </Event>
+              <Tool>
+                <ToolNumber val="1"/>
+              </Tool>
+            </MenuEntry>
+            <MenuEntry id="2">
+              <MenuType val="3"/>
+              <Flags val="1088"/>
+              <Description_U val="&amp;Close Application"/>
+              <Right comp="-1"/>
+              <Help comp="-1"/>
+              <Prompt comp="-1"/>
+              <Event>
+                <EventType val="I"/>
+                <InternalEventID val="24"/>
+              </Event>
+              <Tool>
+                <ToolNumber val="21"/>
+              </Tool>
+            </MenuEntry>
+            <MenuEntry id="3">
+              <MenuType val="5"/>
+            </MenuEntry>
+            <MenuEntry id="6">
+              <MenuType val="3"/>
+              <Description_U val="E&amp;xit"/>
+              <Right comp="-1"/>
+              <Help comp="-1"/>
+              <Prompt comp="-1"/>
+              <Event>
+                <EventType val="I"/>
+                <InternalEventID val="28"/>
+              </Event>
+            </MenuEntry>
+          </Menu>
+        </MenuEntry>
+      </Menu>
+    </Menus>
+  </MenusRepository>
+
+</Application>

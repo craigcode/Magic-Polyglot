@@ -1,0 +1,24 @@
+ <Application>
+ 
+<Header>
+
+  <Version val="14090.00"/>
+
+  <WithIsn val="Y"/>
+
+  <Exe comp="-1"/>
+
+  <LastIsn val="5"/>
+
+  <LastIsnFolder val="1"/>
+
+</Header>
+
+<DataRepositoryProperties/>
+ <DataSourceRepository>
+  <DataObjects>
+ 
+<DataObject PhysicalName="%WorkingDir%Data\counter.json" Resident="N" UniqueISNConvState="12" data_source="Default JSON Database" id="5" name="Counter" offset="228" length="2633"/> 
+<DataObject PhysicalName="%WorkingDir%Data\user.json" Resident="N" UniqueISNConvState="12" data_source="Default JSON Database" id="3" name="User" offset="2862" length="5472"/>  </DataObjects>
+ </DataSourceRepository>
+ <LastModified val="31063144-604294"/>  </Application>
