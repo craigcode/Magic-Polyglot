@@ -25,4 +25,6 @@ Current Episodes on Youtube:
 
 <a href="https://www.youtube.com/watch?v=oTr6sEK_doY" target="_blank">Episode 6 - Authentication with Auth0 and JWT</a>
 
+<a href="https://www.youtube.com/watch?v=PsseytnpadM" target="_blank">Episode 7 - MATH Stack CRUD Demo</a>
+
 (Source code for each episode is in corresponding folder).
