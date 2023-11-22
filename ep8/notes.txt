@@ -1,0 +1,72 @@
+Python environment set-up for this project:
+in ep8 folder:
+    python -m venv env
+    env\scripts\activate.bat 
+
+package installs:
+    python -m pip install fastapi "uvicorn[standard]"
+    pip install sqlmodel
+    pip install python-dotenv
+    pip install jinja2
+    pip install python-multipart
+
+    alternatively, use:
+    pip install -r requirements.txt
+
+as required:
+    python.exe -m pip install --upgrade pip
+
+
+to tell which python environment is currently running:
+    python -c "import sys; print(sys.prefix)"
+
+
+to start python app in dev mode, in python directory:
+
+    py main.py
+
+alternative to starting uvicorn in main.py - allows for development reload:
+    uvicorn main:app --reload
+
+
+Curl examples for testing:
+    curl -X DELETE http://127.0.0.1:8000/kanban/22
+    curl -X POST http://127.0.0.1:8000/kanban/10 -H "Content-Type: application/x-www-form-urlencoded" -d "task_name=updated&description=hello" 
+    curl -X POST http://127.0.0.1:8000/kanban -H "Content-Type: application/x-www-form-urlencoded" -d "task_name=new-task&description=Working!&task_status=1" 
+
+---
+
+To configure Magic for single-user edition, amend the Magic.ini as follows:
+
+In the [MAGIC_ENV] section -
+Update the lines for LicenseFile and LicenseName to have a leading ;
+
+    ;LicenseFile = c:\xpa410\licenses\dev-license.dat
+    ;LicenseName = MGCSTK
+
+Update the [MAGIC_GATEWAYS] section to comment-out the DB gateways not permitted by 
+Single User mode - for example:
+
+;MGDB00=Gateways\MGBtrieve.dll
+;MGDB01=Gateways\MGPervasiveSQL.dll
+;MGDB03=Gateways\MGMySQL.dll
+;MGDB06=mgdb2400.DLL
+MGDB09=Gateways\mgSQLite.dll
+;MGDB11=Gateways\mgPostgreSQL.dll
+;MGDB13=mgOracle.dll
+;MGDB16=mgeac.dll
+;MGDB18=mgdb2.DLL
+;MGDB19=Gateways\mgodbc.dll
+;MGDB20=Gateways\mgmssql.dll
+MGDB21=Gateways\mgmemory.dll
+MGDB10=Gateways\mglocal.dll
+;MGDB22=Gateways\SQLServerODBC.dll
+
+Web Links for xpa Single User Edition information referenced in video:
+
+https://www.prnewswire.com/news-releases/magic-softwares-unipaas-jet-opens-the-door-to-a-new-generation-of-application-developers-118066799.html
+http://homeedition.magicsoftware.com/2012/03/faq.html
+https://lg.magicsoftware.com/magic-xpa-free-single-user-edition
+https://www.magicsoftware.com/magic-support-center/magic-xpa-application-platform-editions-comparison-table/
+https://downloads.magicsoftware.com/
+

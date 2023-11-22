@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Magic FastAPI Demo.">
+
+<title>Kanban Board - Magic SUE Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/app.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" type="image/png" href="../favicon.ico">
+
+<script src="https://unpkg.com/htmx.org@1.9.6"></script>
+<script>
+    
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark')
+    }
+
+    function CardMove(id,fromList,oldIndex,toList,newIndex){
+        //alert('Card Move: ' + 
+        //    id +','+ fromList +','+ oldIndex +','+ toList +','+ newIndex);
+        document.movecardform.id.value = id.substring(5);
+        document.movecardform.from_list.value = fromList.substring(12);
+        document.movecardform.to_list.value = toList.substring(12);
+        document.movecardform.old_index.value = oldIndex;
+        document.movecardform.new_index.value = newIndex;
+
+        document.getElementById("cardmove").click();
+
+    }
+
+
+</script>
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-800">
+    
+
+
+    
+<nav class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+  <div class="py-3 px-3 lg:px-5 lg:pl-3">
+    <div class="flex justify-between items-center">
+      <div class="flex justify-start items-center">
+        <button id="toggleSidebar" aria-expanded="true" aria-controls="sidebar" class="hidden p-2 mr-3 text-gray-600 rounded cursor-pointer lg:inline hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+        </button>
+        <button id="toggleSidebarMobile" aria-expanded="true" aria-controls="sidebar" class="p-2 mr-2 text-gray-600 rounded cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+          <svg id="toggleSidebarMobileHamburger" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+          <svg id="toggleSidebarMobileClose" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+        <a href="#" class="flex mr-14">
+          
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Magic SUE - FastAPI Demo</span>
+        </a>
+
+      </div>
+      <div class="flex items-center">
+
+          <button id="theme-toggle" data-tooltip-target="tooltip-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+          <div id="tooltip-toggle" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+              Toggle dark mode
+              <div class="tooltip-arrow" data-popper-arrow></div>
+          </div>
+          
+
+        </div>
+    </div>
+  </div>
+</nav>
+<div class="flex overflow-hidden pt-16 bg-gray-50 dark:bg-gray-900">
+
+    <aside id="sidebar" class="flex hidden fixed top-0 left-0 z-20 flex-col flex-shrink-0 pt-16 w-64 h-full duration-75 lg:flex transition-width" aria-label="Sidebar">
+        <div class="flex relative flex-col flex-1 pt-0 min-h-0 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+          <div class="flex overflow-y-auto flex-col flex-1 pt-5 pb-4">
+            <div class="flex-1 px-3 space-y-1 bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+              <ul class="pb-2 space-y-2">
+                <li>
+                  <form action="#" method="GET" class="lg:hidden">
+                    <label for="mobile-search" class="sr-only">Search</label>
+                    <div class="relative">
+                      <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                      </div>
+                      <input type="text" name="email" id="mobile-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search">
+                    </div>
+                  </form>
+                </li>
+
+                <li>
+                  <a href="/kanban/" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 ">
+                      <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                      <span class="flex-1 ml-3 whitespace-nowrap" sidebar-toggle-item>Python Kanban</span>
+                  </a>
+                </li>
+
+                <li>
+                    <a href="/magic/kanban/" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 ">
+                        <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap" sidebar-toggle-item>Magic Kanban</span>
+                    </a>
+                  </li>
+  
+
+              </ul>
+              <div class="pt-2 space-y-2">
+
+                <a href="https://github.com/craigcode/magic-polyglot/issues" target="_blank" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
+                  <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z" clip-rule="evenodd"></path></svg>
+                  <span class="ml-3" sidebar-toggle-item>Help</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="hidden absolute bottom-0 left-0 justify-center p-4 space-x-4 w-full lg:flex" sidebar-bottom-menu>
+            <a href="#" class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path></svg>
+            </a>
+            
+
+          </div>
+        </div>
+    </aside>
+
+<div class="hidden fixed inset-0 z-10 bg-gray-900/50 dark:bg-gray-900/90" id="sidebarBackdrop"></div>
+  
+  <div id="main-content" class="overflow-y-auto relative w-full h-full bg-gray-50 lg:ml-64 dark:bg-gray-900">
+    <main>
+      <div class="flex flex-col mt-2">
+    <div class="overflow-x-auto">
+        <div class="inline-block min-w-full align-middle"> 
+            <div class="overflow-hidden shadow">
+                <div class="flex justify-start items-start px-4 mb-6 space-x-4">
+                    <!$MGREPEAT>
+                    <div class="min-w-kanban">
+                        <div class="py-4 text-base font-semibold text-gray-900 dark:text-gray-300"><!$MG_listname></div>
+
+                        <div id="kanban-list-<!$MG_list_id>" class="mb-4 space-y-4 min-w-kanban">
+                            <!$MGREPEAT>
+                            <div id="card-<!$MG_task_id>" class="flex flex-col p-5 max-w-md bg-white rounded-lg shadow transform cursor-move dark:bg-gray-800">
+                                <div class="flex justify-between items-center pb-4">
+                                    <div class="text-base font-semibold text-gray-900 dark:text-white"><!$MG_taskname></div>
+
+                                    <button type="button" 
+                                        hx-get="/kanban/edit/<!$MG_task_id>"
+                                        hx-target="#kanban-card-body"
+                                        data-modal-toggle="kanban-card-modal" class="p-2 text-sm text-gray-500 rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
+                                    </button>
+                                </div>
+
+                                <div class="flex flex-col">
+                                    <div class="pb-4 text-sm font-normal text-gray-700 dark:text-gray-400"><!$MG_description></div>
+                                    
+                                    <div class="flex justify-between">
+                                        
+                                        <div class="flex justify-center items-center px-3 text-sm font-medium text-purple-800 bg-purple-100 rounded-lg dark:bg-purple-200">
+                                            <svg class="mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                                            <!$MG_status_text>
+                                        </div>
+                                        <div class="text-sm font-normal text-gray-700 dark:text-gray-400">ID: #<!$MG_task_id></div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                            <!$MGENDREPEAT>                            
+                            
+                        </div>
+
+                        <button type="button" data-modal-toggle="new-card-modal" 
+                            onclick="document.addcardform.task_status.value = '<!$MG_list_id>'" 
+                            class="flex justify-center items-center py-2 w-full font-semibold text-gray-500 rounded-lg border-2 border-gray-200 border-dashed hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300 dark:border-gray-800 dark:hover:border-gray-700 dark:hover:bg-gray-800 dark:hover:text-white">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                            Add another card
+                        </button>
+                    </div>
+                    <!$MGENDREPEAT>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center md:inset-0 h-modal sm:h-full" id="kanban-card-modal">
+    <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center p-4 rounded-t border-b md:px-6 dark:border-gray-700">
+                <div class="text-xl font-semibold text-gray-900 dark:text-white">Edit task</div>
+                <button type="button" data-modal-toggle="kanban-card-modal" id="edit-close-btn"
+                    class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+            <div id="kanban-card-body">
+            <!-- Modal body -->
+            <div class="p-4 md:p-6">
+               <div class="mb-3 text-2xl font-semibold leading-none text-gray-900 dark:text-white">&nbsp;</div>
+               <div class="flex flex-col justify-center items-start mb-5 space-y-3">
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                        &nbsp;
+                    </div>
+
+               </div>
+               <div class="inline-flex items-center mb-2 text-lg font-semibold text-center text-gray-900 dark:text-white">
+                    <svg class="mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path></svg>
+                    Description
+               </div>
+               <div class="mb-4 space-y-2 text-base text-gray-500 dark:text-gray-400">
+                    <p>&nbsp;</p>
+               </div>
+               <div class="mb-4 w-full bg-gray-100 rounded-lg border border-gray-100 dark:bg-gray-700 dark:border-gray-600">
+                    <div class="p-4">
+                        <label for="compose-mail" class="sr-only">Your comment</label>
+                        <textarea id="compose-mail" rows="4" class="block px-0 w-full text-base text-gray-900 bg-gray-100 border-0 focus:ring-0 dark:text-white dark:bg-gray-700 dark:placeholder-gray-400" placeholder="Write a comment..."></textarea>
+                    </div>
+                    <div class="flex justify-between items-center p-4 border-t dark:border-gray-600">
+                        <button type="button" class="text-gray-900 hover:text-white bg-primary-700 hover:bg-primary-800 border border-gray-200 hover:border-primary-800 font-semibold rounded-lg text-xs px-3 py-1.5 text-center inline-flex items-center dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-primary-800">
+                            <svg class="mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd"></path></svg>
+                            Post comment
+                        </button>
+
+                        <div class="flex pl-0 space-x-1 sm:pl-2">
+                            <a href="#" class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd"></path></svg>
+                            </a>
+                            <a href="#" class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Modal footer -->
+            <div class="grid grid-rows-2 grid-flow-col gap-2 p-4 rounded-b border-t border-gray-200 sm:grid-rows-1 md:p-6 dark:border-gray-600">
+                <button type="button" class="inline-flex items-center justify-center text-gray-900 bg-white hover:text-white border hover:bg-primary-800 border-gray-200 hover:border-primary-800 font-semibold rounded-lg text-sm py-2.5 text-center dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-primary-800 dark:hover:border-primary-800">
+                    <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
+                    Save
+                </button>
+                <button type="button" class="inline-flex items-center justify-center text-gray-900 bg-white hover:bg-gray-100 border hover:border-gray-300 border-gray-200 font-semibold rounded-lg text-sm py-2.5 text-center dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600">
+                    <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    Move
+                </button>
+                <button type="button" class="inline-flex items-center justify-center text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 hover:border-gray-300 font-semibold rounded-lg text-sm py-2.5 text-center dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600">
+                    <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z"></path><path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z"></path></svg>
+                    Copy
+                </button>
+                <button type="button" 
+                    hx-delete="/kanban/10"                  
+                    xhx-target="#msgtext"
+                    xhx-swap="outerHTML"
+                    data-modal-toggle="kanban-card-modal"
+                    class="inline-flex items-center justify-center text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 hover:border-gray-300 font-semibold rounded-lg text-sm py-2.5 text-center dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600">
+                    <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"></path><path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                    Archive
+                </button>
+                <button type="button" class="inline-flex items-center justify-center text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 hover:border-gray-300 font-semibold rounded-lg text-sm py-2.5 text-center dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600">
+                    <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+                    Watch
+                </button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Task Modal -->
+<div class="hidden overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center md:inset-0 h-modal sm:h-full" id="new-card-modal">
+    <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center p-4 rounded-t border-b md:px-6 dark:border-gray-700">
+                <div class="text-xl font-semibold dark:text-white">Add new task</div>
+                <button type="button" id="add-close-btn"
+                    data-modal-toggle="new-card-modal" class="text-gray-400 bg-transparent hover:bg-gray-300 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-700 dark:hover:text-white">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 space-y-6 md:px-6">
+                <form name="addcardform" action="#">
+                    <input type="hidden" name="task_status" id="task_status" value="1">
+                    <div class="grid grid-cols-2 gap-6 mb-4">
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="task_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Task Name</label>
+                            <input type="text" name="task_name" id="task_name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" placeholder="Redesign Homepage" required>
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">                          
+                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter a description</label>
+                            <textarea id="description" name="description" rows="6" class="block w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-200 sm:text-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" placeholder="On line 672 you define $table_variants. Each instance of 'color-level' needs to be changed to 'shift-color'."></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center p-4 space-x-3 rounded-b border-t border-gray-200 md:p-6 dark:border-gray-700">
+                    <button type="button" 
+                        hx-post="/kanban" 
+                        hx-vals='js:{"task_name": document.getElementById("task_name").value, "description":document.getElementById("description").value+"&nbsp;", "task_status":document.getElementById("task_status").value}'
+                        hx-swap="beforeend"
+                        hx-target="#kanban-list-1"
+                        data-modal-toggle="new-card-modal"
+                        hx-on::after-request="location.replace(location.href.split('#')[0]);"
+                        class="w-32 inline-flex items-center justify-center text-gray-900 hover:text-white bg-primary-700 hover:bg-primary-800 border border-gray-200 hover:border-primary-800 font-semibold rounded-lg text-sm py-2.5 text-center">
+                        <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                        Add Card
+                    </button>
+                    <button type="button" data-modal-toggle="new-card-modal" class="w-24 text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 hover:border-gray-300 font-semibold rounded-lg text-sm py-2.5 text-center dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600">
+                        Close
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    </main>
+    
+  </div>
+
+</div>
+
+<div id="cardmove"
+    hx-post="/kanban/move/"
+    hx-vals='js:{"id": document.getElementById("mcf_id").value, "from_list":document.getElementById("mcf_from_list").value, "to_list":document.getElementById("mcf_to_list").value, "old_index":document.getElementById("mcf_old_index").value, "new_index":document.getElementById("mcf_new_index").value}'
+    hx-target='#hidden-card'
+    hx-onswap="outerHTML"
+    hx-on::after-request="location.replace(location.href.split('#')[0]);"
+    hx-trigger="click"></div>
+<form id="movecardform" name="movecardform" >
+    <input type="hidden" name="id" id="mcf_id"> 
+    <input type="hidden" name="from_list" id="mcf_from_list">
+    <input type="hidden" name="to_list" id="mcf_to_list">
+    <input type="hidden" name="old_index" id="mcf_old_index">
+    <input type="hidden" name="new_index" id="mcf_new_index">
+</form>
+<div id="hidden-card" class="invisible"></div>
+    <script src="/static/app.bundle.js"></script>
+  </body>
+</html>

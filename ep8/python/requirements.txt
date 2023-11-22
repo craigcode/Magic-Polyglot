@@ -1,0 +1,5 @@
+fastapi "uvicorn[standard]"
+sqlmodel
+python-dotenv
+jinja2
+python-multipart

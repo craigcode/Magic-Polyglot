@@ -1,0 +1,13 @@
+{% for i in range(3) %}
+<table>
+    {% for task in tasks %}
+    {% if task.id == (i + 1) %}
+    <tr><td>{{task.id|num2int}}</td>
+        <td>{{task.task_name}}</td>
+        <td>{{task.description}}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+<hr>
+{% endfor %}

@@ -1,0 +1,31 @@
+<div id="kanban-list-{{status}}" class="mb-4 space-y-4 min-w-kanban">
+    {% for task in tasks %}
+    <div id="card-{{task.id|num2int}}" class="flex flex-col p-5 max-w-md bg-white rounded-lg shadow transform cursor-move dark:bg-gray-800">
+        <div class="flex justify-between items-center pb-4">
+            <div class="text-base font-semibold text-gray-900 dark:text-white">{{task.task_name}}</div>
+
+            <button type="button" 
+                hx-get="/kanban/edit/{{task.id|num2int}}"
+                hx-target="#kanban-card-body"
+                data-modal-toggle="kanban-card-modal" class="p-2 text-sm text-gray-500 rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
+            </button>
+        </div>
+
+        <div class="flex flex-col">
+            <div class="pb-4 text-sm font-normal text-gray-700 dark:text-gray-400">{{task.description}}</div>
+            
+            <div class="flex justify-between">
+                
+                <div class="flex justify-center items-center px-3 text-sm font-medium text-purple-800 bg-purple-100 rounded-lg dark:bg-purple-200">
+                    <svg class="mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                    {{task.status|status_text}}
+                </div>
+                <div class="text-sm font-normal text-gray-700 dark:text-gray-400">ID: #{{task.id|num2int}}</div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}                            
+    
+</div>
