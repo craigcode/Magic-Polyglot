@@ -27,4 +27,7 @@ Current Episodes on Youtube:
 
 <a href="https://www.youtube.com/watch?v=PsseytnpadM" target="_blank">Episode 7 - MATH Stack CRUD Demo</a>
 
+<a href="https://www.youtube.com/watch?v=QAKQAx58os0" target="_blank">Episode 8 - Magic xpa Single User Edition: MATH Stack Demo</a>
+
+
 (Source code for each episode is in corresponding folder).
